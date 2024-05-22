@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend\Penghuni;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PenghuniCreateRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class PenghuniCreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,12 @@ class PenghuniCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_lengkap' => ['required', 'string' ,'max:200'],
+            'status_penghuni' => ['required', Rule::in(['Kontrak', 'Tetap'])],
+            'nomor_telepon' => ['required','max:100'],
+            'sudah_menikah' => ['required', 'boolean'],
+            // 'foto_ktp' => ['required','array'],
+            // 'foto_ktp.*' => ['mimes:jpg,png,jpeg,gif,svg,pdf','max:2048'],
         ];
     }
 }

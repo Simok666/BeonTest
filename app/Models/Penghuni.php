@@ -21,7 +21,8 @@ class Penghuni extends Model
         'nama_lengkap',
         'foto_ktp',
         'nomor_telepon',
-        'sudah_menikah'
+        'sudah_menikah',
+        'status_penghuni'
     ];
 
     public function penghuni_rumah() :HasMany 

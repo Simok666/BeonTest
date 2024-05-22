@@ -11,7 +11,7 @@ class PenghuniRumahUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class PenghuniRumahUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'penghuni_id' => ['required', 'numeric' ,'max:200'],
+            'rumah_id' => ['required', 'numeric', 'max:200'],
+            'tanggal_mulai_menempati' => ['required','date'],
+            'tanggal_selesai_menempati' => ['required', 'date'],
         ];
     }
 }

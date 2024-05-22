@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Backend\Rumah;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RumahUpdateRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class RumahUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,8 @@ class RumahUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nomor_rumah' => ['required', 'numeric', 'unique:rumahs,nomor_rumah'],
+            'status_rumah' => ['required', Rule::in(['Kontrak', 'Tetap'])]
         ];
     }
 }
